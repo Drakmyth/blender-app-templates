@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: yeouchien/sanitize-branch-name-action@v1
-        with: ${{ matrix.template }}
+        with: '${{ matrix.template }}'
         id: sanitize-template-name
       - name: Package ${{ matrix.template }} Template
         uses: thedoctor0/zip-release@main
