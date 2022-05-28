@@ -26,4 +26,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3.0.0
+      - run: mv ./**/*.zip .
       - run: ls -R
