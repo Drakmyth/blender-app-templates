@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         template: [
-          "Default",
-          "3D Printing"
+          Default,
+          3D\ Printing
         ]
     steps:
       - uses: actions/checkout@master
