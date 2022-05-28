@@ -15,10 +15,27 @@ jobs:
           3D Printing
         ]
     steps:
-      - uses: actions/checkout@master
-      - name: Package ${{ matrix.template }} Template
-        uses: thedoctor0/zip-release@main
+      - uses: actions/checkout@v3.0.2
+      - run: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
+      - uses: actions/upload-artifact@v3.1.0
         with:
-          type: 'zip'
-          filename: '${{ matrix.template }}.zip'
-          path: ./${{ matrix.template }}
+          name: ${{ matrix.template }}
+          path: "./${{ matrix.template }}.zip"
+  release:
+    needs: [ package ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - run: mkdir release-artifacts
+      - uses: actions/download-artifact@v3.0.0
+        with:
+          path: ./release-artifacts
+      - run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
+        id: date
+      - uses: ncipollo/release-action@v1.10.0
+        with:
+          name: ${{ steps.date.outputs.date }}
+          artifacts: ./release-artifacts/**/*.zip
+          bodyFile: .github/workflows/release-notes.md
+          commit: ${{ github.sha }}
+          tag: ${{ steps.date.outputs.date }}
