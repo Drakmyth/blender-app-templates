@@ -21,9 +21,9 @@ jobs:
         with:
           name: ${{ matrix.template }}
           path: "./${{ matrix.template }}.zip"
-  # release:
-  #   needs: [ package ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/download-artifact@v3.0.0
-  #       with:
+  release:
+    needs: [ package ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3.0.0
+      - run: ls -R
