@@ -21,7 +21,9 @@ jobs:
       #   with:
       #     args: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
       # - run: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
+      - run: mkdir output
+      - run: mv "./${{ matrix.template }}" "output/${{ matrix.template }}"
       - uses: actions/upload-artifact@v3.1.0
         with:
           name: ${{ matrix.template }}
-          path: ./${{ matrix.template }}
+          path: ./output
