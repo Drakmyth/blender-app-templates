@@ -1,5 +1,6 @@
 # Blender Application Templates
 [![License](https://img.shields.io/github/license/Drakmyth/blender-app-templates)](https://github.com/Drakmyth/blender-app-templates/blob/master/LICENSE.md)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Drakmyth/blender-app-templates)
 
 Application Templates for Blender allowing quick startup configuration for different use cases.
 
