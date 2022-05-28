@@ -16,9 +16,11 @@ jobs:
         ]
     steps:
       - uses: actions/checkout@master
+      - uses: yeouchien/sanitize-branch-name-action@v1
+        with: ${{ matrix.template }}
       - name: Package ${{ matrix.template }} Template
         uses: thedoctor0/zip-release@main
         with:
-          type: 'zip'
-          filename: '${{ matrix.template }}.zip'
-          path: './${{ matrix.template }}'
+          type: zip
+          filename: ${{ outputs.sanitized-branch-name }}.zip
+          path: ./${{ matrix.template }}
