@@ -16,7 +16,12 @@ jobs:
         ]
     steps:
       - uses: actions/checkout@v3.0.2
-      - name: Package ${{ matrix.template }} Template
-        uses: montudor/action-zip@v1.0.0
+      # - name: Package ${{ matrix.template }} Template
+      #   uses: montudor/action-zip@v1.0.0
+      #   with:
+      #     args: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
+      # - run: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
+      - uses: actions/upload-artifact@v3.1.0
         with:
-          args: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
+          name: ${{ matrix.template }}
+          path: ./${{ matrix.template }}
