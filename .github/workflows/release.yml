@@ -12,7 +12,7 @@ jobs:
       matrix:
         template: [
           Default,
-          3D\ Printing
+          3D Printing
         ]
     steps:
       - uses: actions/checkout@master
@@ -21,4 +21,4 @@ jobs:
         with:
           type: 'zip'
           filename: '${{ matrix.template }}.zip'
-          path: ./${{ matrix.template }}
+          path: './${{ matrix.template }}'
