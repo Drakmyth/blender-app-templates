@@ -35,6 +35,6 @@ jobs:
         with:
           name: ${{ steps.date.outputs.date }}
           artifacts: ./*.zip
-          generateReleaseNotes: true
+          body: ''
           commit: ${{ github.sha }}
           tag: ${{ steps.date.outputs.date }}
