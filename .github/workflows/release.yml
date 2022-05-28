@@ -33,10 +33,13 @@ jobs:
       - run: find ./ -empty -type d -delete
       - run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
         id: date
+      - run: ls
+      - run: cd ..
+      - run: ls
       - uses: ncipollo/release-action@v1.10.0
         with:
           name: ${{ steps.date.outputs.date }}
           artifacts: ./*.zip
-          bodyFile: ../.github/workflows/release-notes.md
+          bodyFile: .github/workflows/release-notes.md
           commit: ${{ github.sha }}
           tag: ${{ steps.date.outputs.date }}
