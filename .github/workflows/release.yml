@@ -15,14 +15,8 @@ jobs:
           3D Printing
         ]
     steps:
-      - uses: actions/checkout@master
-      - uses: yeouchien/sanitize-branch-name-action@v1
-        with:
-          branch-name: ${{ matrix.template }}
-        id: sanitize-template-name
+      - uses: actions/checkout@v3.0.2
       - name: Package ${{ matrix.template }} Template
-        uses: thedoctor0/zip-release@main
+        uses: montudor/action-zip@v1.0.0
         with:
-          type: zip
-          filename: ${{ steps.sanitize-template-name.outputs.sanitized-branch-name }}.zip
-          path: ./${{ matrix.template }}
+          args: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
