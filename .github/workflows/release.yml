@@ -16,14 +16,14 @@ jobs:
         ]
     steps:
       - uses: actions/checkout@v3.0.2
-      # - name: Package ${{ matrix.template }} Template
-      #   uses: montudor/action-zip@v1.0.0
-      #   with:
-      #     args: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
-      # - run: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
-      - run: mkdir output
-      - run: mv "./${{ matrix.template }}" "output/${{ matrix.template }}"
+      - run: zip -r "${{ matrix.template }}.zip" "./${{ matrix.template }}"
       - uses: actions/upload-artifact@v3.1.0
         with:
           name: ${{ matrix.template }}
-          path: ./output
+          path: "./${{ matrix.template }}.zip"
+  # release:
+  #   needs: [ package ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/download-artifact@v3.0.0
+  #       with:
