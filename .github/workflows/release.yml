@@ -25,16 +25,18 @@ jobs:
     needs: [ package ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3.0.2
+      - run: mkdir release-artifacts
+      - run: cd release-artifacts
       - uses: actions/download-artifact@v3.0.0
       - run: mv ./**/*.zip .
       - run: find ./ -empty -type d -delete
-      - run: ls -R
       - run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
         id: date
       - uses: ncipollo/release-action@v1.10.0
         with:
           name: ${{ steps.date.outputs.date }}
           artifacts: ./*.zip
-          body: ''
+          bodyFile: ../.github/workflows/release-notes.md
           commit: ${{ github.sha }}
           tag: ${{ steps.date.outputs.date }}
