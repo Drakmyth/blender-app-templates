@@ -36,3 +36,5 @@ jobs:
           name: ${{ steps.date.outputs.date }}
           artifacts: ./*.zip
           omitBody: true
+          commit: ${{ github.sha }}
+          tag: ${{ steps.date.outputs.date }}
